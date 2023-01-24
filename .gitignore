@@ -2,3 +2,14 @@
 *.csv
 *.gz
 .ipynb*
+
+### Terraform ###
+# Compiled files
+*.tfstate
+*.tfstate.backup
+
+# Module directory
+.terraform/
+
+### Terraform Patch ###
+*.tfvars
