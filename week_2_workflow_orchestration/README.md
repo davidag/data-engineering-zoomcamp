@@ -110,3 +110,27 @@ Deployment 'etl-gcs-to-bq/github-deployment' successfully created with id
 ```bash
 $ prefect deployment run --params '{"color": "green", "year": 2020, "months": [11]}' etl-gcs-to-bq/github-deployment
 ```
+
+## Question 5: Email or Slack notifications
+
+- Load data from web to gcs:
+
+```bash
+$ python -m flows.etl_web_to_gcs --color green --year 2019 --month 4
+```
+
+- Login with prefect cloud account
+
+```bash
+$ prefect cloud login
+```
+
+- Run steps from question 4
+
+- Create e-mail block on prefect cloud UI
+
+- Create automation to notify by e-mail of errors in all flows
+
+## Question 6. Secrets
+
+NA
