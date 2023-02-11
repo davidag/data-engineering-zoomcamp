@@ -8,7 +8,7 @@
 - SQL refresher
 - Google Cloud and Terraform
 
-[Homework solution](week_1_basics_n_setup/README.md)
+[Homework solution](week_1_basics_n_setup)
 
 ## Week 2: Workflow Orchestration
 
@@ -17,4 +17,4 @@
 - Google Cloud Storage and BigQuery
 - Using a Docker registry to run Prefect flows in Docker containers
 
-[Homework solution](week_2_workflow_orchestration/README.md)
+[Homework solution](week_2_workflow_orchestration)
