@@ -18,3 +18,12 @@
 - Using a Docker registry to run Prefect flows in Docker containers
 
 [Homework solution](week_2_workflow_orchestration)
+
+## Week 3: Data Warehouse and BigQuery
+
+- OLAP vs OLTP
+- Data warehouses
+- BigQuery, including partitioning and clustering
+- BigQuery Machine Learning
+
+[Homework solution](week_3_data_warehouse)
