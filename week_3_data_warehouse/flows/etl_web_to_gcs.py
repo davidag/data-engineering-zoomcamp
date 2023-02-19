@@ -7,7 +7,7 @@ from prefect import flow, task
 from prefect_gcp.cloud_storage import GcsBucket
 
 
-BUCKET_BLOCK_NAME = "zoom-gcs-week3"
+BUCKET_BLOCK_NAME = "zoom-gcs-bucket"
 
 
 @task()

@@ -11,8 +11,8 @@ BUCKET_BLOCK_NAME = "zoom-gcs-week2"
 CREDENTIALS_BLOCK_NAME = "zoom-gcp-creds"
 
 # Google Cloud constants
-DATASET_NAME = "trips_data_week2"
-TABLE_NAME = "ny_trips"
+DATASET_NAME = "trips_data_all"
+TABLE_NAME_SUFFIX = "_tripdata"
 PROJECT_ID = "dtc-de-375612"
 
 
@@ -41,11 +41,11 @@ def transform(path: Path) -> pd.DataFrame:
 
 
 @task()
-def write_bq(df: pd.DataFrame) -> None:
+def write_bq(color: str, df: pd.DataFrame) -> None:
     """Write DataFrame to BiqQuery"""
     gcp_credentials_block = GcpCredentials.load(CREDENTIALS_BLOCK_NAME)
     df.to_gbq(
-        destination_table=f"{DATASET_NAME}.{TABLE_NAME}",
+        destination_table=f"{DATASET_NAME}.{color}{TABLE_NAME_SUFFIX}",
         project_id=PROJECT_ID,
         credentials=gcp_credentials_block.get_credentials_from_service_account(),
         chunksize=500_000,
@@ -63,7 +63,7 @@ def etl_gcs_to_bq(color: str, year: int, months: List[int]):
 
         path = extract_from_gcs(color, year, month)
         df = transform(path)
-        write_bq(df)
+        write_bq(color, df)
 
         total_rows += df.shape[0]
 

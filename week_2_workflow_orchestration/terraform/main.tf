@@ -50,6 +50,7 @@ resource "google_bigquery_dataset" "dataset" {
 }
 
 resource "google_bigquery_table" "table" {
+  for_each = var.TABLE_NAMES
   dataset_id = google_bigquery_dataset.dataset.dataset_id
-  table_id = var.TABLE_NAME
+  table_id = each.key
 }
