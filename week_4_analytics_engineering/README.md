@@ -33,11 +33,23 @@ OPTIONS (
 3. Create tables in BigQuery from the external tables (no partitioning or clustering):
 ```sql
 CREATE OR REPLACE TABLE nyc_dataset.fhv_tripdata_2019 AS
-SELECT * FROM nyc_dataset.fhv_tripdata_2019_external;
+SELECT * FROM nyc_dataset.fhv_tripdata_2019_ext;
 
 CREATE OR REPLACE TABLE trips_data_all.yellow_tripdata AS
 SELECT * FROM trips_data_all.yellow_tripdata_ext;
 
 CREATE OR REPLACE TABLE trips_data_all.green_tripdata AS
 SELECT * FROM trips_data_all.green_tripdata_ext;
+```
+## Homework
+
+```sql
+-- Question 1
+SELECT count(*) FROM `dtc-de-375612.dbt_dataset.fact_trips` where extract(year from pickup_datetime) in (2019, 2020);
+
+-- Question 3
+SELECT count(*) FROM `dtc-de-375612.dbt_dataset.stg_fhv_tripdata` where extract(year from pickup_datetime) = 2019;
+
+-- Question 4
+SELECT count(*) FROM `dtc-de-375612.dbt_dataset.fact_fhv_trips` where extract(year from pickup_datetime) = 2019;
 ```
