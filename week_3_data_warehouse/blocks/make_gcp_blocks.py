@@ -4,10 +4,10 @@ from prefect_gcp.cloud_storage import GcsBucket
 
 # Prefect constants
 CREDENTIALS_BLOCK_NAME = "zoom-gcp-creds"  # Assumes this one already exists from last week
-BUCKET_BLOCK_NAME = "zoom-gcs-week3"
+BUCKET_BLOCK_NAME = "zoom-gcs-bucket"
 
 # Google Cloud constants
-BUCKET_GCP_NAME = "data-warehouse-week3_dtc-de-375612"
+BUCKET_GCP_NAME = "data-warehouse_dtc-de-375612"
 
 # Create or update Google Cloud Storage block in Prefect
 bucket_block = GcsBucket(

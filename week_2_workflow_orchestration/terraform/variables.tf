@@ -20,11 +20,11 @@ variable "storage_class" {
 variable "BQ_DATASET" {
   description = "BigQuery Dataset that raw data (from GCS) will be written to"
   type = string
-  default = "trips_data_week2"
+  default = "trips_data_all"
 }
 
-variable "TABLE_NAME" {
-  description = "BigQuery Table"
-  type = string
-  default = "ny_trips"
+variable "TABLE_NAMES" {
+  type = set(string)
+  description = "BigQuery Tables"
+  default = ["green_tripdata", "yellow_tripdata"]
 }

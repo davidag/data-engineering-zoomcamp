@@ -1,5 +1,5 @@
 locals {
-  data_bucket = "data-warehouse-week3"
+  data_bucket = "data-warehouse"
 }
 
 variable "project" {
