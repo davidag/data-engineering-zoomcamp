@@ -27,3 +27,10 @@
 - BigQuery Machine Learning
 
 [Homework solution](week_3_data_warehouse)
+
+## Week 4: Analytics Engineering
+
+- Analytics Engineering
+- data build tool (dbt) and BigQuery
+- dbt models
+- data visualization
