@@ -34,3 +34,12 @@
 - data build tool (dbt) and BigQuery
 - dbt models
 - data visualization
+
+## Week 5: Batch Processing
+
+- Data processing: batch vs streaming
+- Apache Spark
+	- DataFrames: Actions and Transformations
+	- Spark SQL: Join and GroupBy
+	- Resilient Distributed Datasets
+- Google Cloud Dataproc
