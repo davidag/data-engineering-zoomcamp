@@ -35,6 +35,8 @@
 - dbt models
 - data visualization
 
+[Homework solution](week_4_analytics_engineering)
+
 ## Week 5: Batch Processing
 
 - Data processing: batch vs streaming
@@ -43,3 +45,16 @@
 	- Spark SQL: Join and GroupBy
 	- Resilient Distributed Datasets
 - Google Cloud Dataproc
+
+[Homework solution](week_5_batch_processing)
+
+## Week 6: Stream Processing
+
+- [Stream processing](https://en.wikipedia.org/wiki/Stream_processing)
+- [Apache Kafka](https://kafka.apache.org/)
+- [Kafka Connect](https://kafka.apache.org/documentation/#connect)
+- [Kafka Streams](https://kafka.apache.org/documentation/streams/)
+- [Confluent Schema Registry](https://github.com/confluentinc/schema-registry)
+- [ksqlDB](https://ksqldb.io/)
+
+[Homework solution](week_6_stream_processing)
