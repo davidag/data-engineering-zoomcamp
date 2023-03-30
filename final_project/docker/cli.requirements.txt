@@ -1,0 +1,6 @@
+prefect-gcp[cloud_storage]~=0.3
+prefect-sqlalchemy==0.2.4
+pandas==1.5.2
+mysqlclient==1.4.3
+nltk==3.8.1
+pyarrow==10.0.1
