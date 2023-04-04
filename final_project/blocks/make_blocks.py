@@ -1,9 +1,12 @@
+import os
 from prefect_gcp import GcpCredentials
 from prefect_gcp.cloud_storage import GcsBucket
 from prefect_sqlalchemy import SqlAlchemyConnector, ConnectionComponents, SyncDriver
 
 
-project_id = input("Enter Google Cloud Project ID: ")
+project_id = os.environ["GCP_PROJECT_ID"]
+
+print(f"Using project id: {project_id}")
 
 # Prefect constants
 CREDENTIALS_BLOCK_NAME = "gc-creds"

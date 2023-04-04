@@ -24,6 +24,7 @@ services:
       - "~/.secrets:/root/.secrets"
     environment:
       - PREFECT_API_URL=http://server:4200/api
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
     networks:
       - default
 

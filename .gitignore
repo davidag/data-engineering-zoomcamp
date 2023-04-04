@@ -3,6 +3,7 @@
 *.parquet
 *.gz
 .ipynb*
+__pycache__
 
 ### Terraform ###
 # Compiled files
