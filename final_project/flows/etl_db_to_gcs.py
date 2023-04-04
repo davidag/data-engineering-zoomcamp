@@ -10,8 +10,7 @@ from prefect_sqlalchemy import SqlAlchemyConnector
 from nltk.tokenize import word_tokenize
 from nltk.stem.snowball import SnowballStemmer
 
-
-BUCKET_BLOCK_NAME = "gc-storage-data-lake"
+from . import constants as c
 
 
 @task(log_prints=True)
@@ -124,7 +123,7 @@ def write_parquet_files(dfs: dict[str, pd.DataFrame]) -> list[Path]:
 @task()
 def upload_to_gcs(path: Path) -> None:
     """Upload local parquet file to GCS"""
-    gcs_block = GcsBucket.load(BUCKET_BLOCK_NAME)
+    gcs_block = GcsBucket.load(c.BUCKET_BLOCK_NAME)
     gcs_block.upload_from_path(from_path=path, to_path=f"data/{path.name}")
 
 

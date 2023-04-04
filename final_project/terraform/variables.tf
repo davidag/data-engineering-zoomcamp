@@ -16,3 +16,9 @@ variable "storage_class" {
   description = "Storage class type for your bucket. Check official docs for more info."
   default = "STANDARD"
 }
+
+variable "bq_dataset" {
+  description = "BigQuery Dataset that raw data (from GCS) will be written to"
+  type = string
+  default = "mlcet_dataset"
+}
