@@ -25,3 +25,6 @@ process:
 
 transfer:
 	docker compose run cli python -m flows.etl_gcs_to_bq
+
+transform:
+	docker compose run dbt run

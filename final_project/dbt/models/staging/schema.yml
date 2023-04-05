@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: staging
+    database: "{{ env_var('GCP_PROJECT_ID') }}"
+    schema: mlcet_dataset
+    tables:
+      - name: nodes
+      - name: comments
+      - name: users
