@@ -28,6 +28,17 @@ services:
     networks:
       - default
 
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-bigquery:1.4.1
+    volumes:
+      - "./dbt:/usr/app"
+      - "./profiles.yml:/root/.dbt/profiles.yml"
+      - "~/.secrets:/root/.secrets"
+    environment:
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+    networks:
+      - default
+
 volumes:
   prefect:
 

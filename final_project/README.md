@@ -4,9 +4,9 @@
 
 ## Problem description
 
-One of my lifetime goals is helping people quit smoking. For that purpose, I created a non-profit forum and journaling website in 2001. It's still online and can be browsed here (in Spanish): https://miluchacontraeltabaco.com It contains thousands of messages with tips, experiences and motivational words.
+One of my lifetime goals is helping people quit smoking. For that purpose, I created a non-profit forum and blogging website in 2001. It's still online and can be browsed here (in Spanish): https://miluchacontraeltabaco.com It contains thousands of messages with tips, experiences and motivational words.
 
-Content is divided in two types: journal entries and forum posts. Both types can have associated comments. We want to show analytics related to this content, e.g. word counts, common words, number of comments, forum category, date & time, etc.
+Content is divided in two types: blog entries and forum posts. Both types can have associated comments. We want to show analytics related to this content, e.g. word counts, common words, number of comments, forum category, date & time, etc.
 
 ## Dataset
 
@@ -23,15 +23,18 @@ Content is provided in the form of [stems](https://www.nltk.org/howto/stem.html)
 - Google Cloud BigQuery (GCBQ), as data warehouse
 - Terraform, for IaC
 - Prefect, for workflow orchestration
+- dbt Core, for analytics engineering
 
 ## Data pipeline
 
-1. Process: `etl_db_to_gcs.py`
+1. Process: `flows/etl_db_to_gcs.py`
 	- Extract raw data from a MySQL database, clean and preprocess the data, and save as parquet files.
 	- Upload parquet files to **data lake** in Google Cloud Storage.
-2. Transfer: `etl_gcs_to_bq.py`
+2. Transfer: `flows/etl_gcs_to_bq.py`
 	- Download parquet files from **data lake** and load them in memory as a Pandas DataFrame.
 	- Create tables in **data warehouse** in Google Cloud BigQuery.
+3. Transform: `dbt/models`
+	- Transform data in **data warehouse** to prepare it for visualiation in the dashboard.
 
 ## Clustering and Partitioning
 
@@ -51,6 +54,7 @@ Content is provided in the form of [stems](https://www.nltk.org/howto/stem.html)
 
 - `blocks/`: Prefect blocks. Enable the storage of configuration and provide an interface for interacting with external systems. Used in `make setup` to create the initial configuration.
 - `data/`: Dataset files in parquet format.
+- `dbt/`: dbt models to prepare the Data Warehouse data to be used in the Dashboard.
 - `docker/`: Dockerfile used to run Prefect flows.
 - `flows/`: Python files defining Prefect flows.
 - `terraform/`: Terraform files defining Google Cloud resources.
@@ -79,6 +83,16 @@ $ export GCP_PROJECT_ID="<your google cloud project id>"
 3. Run `make process` to upload the dataset parquet files to the data lake (i.e. Cloud Storage).
 
 4. Run `make transfer` to upload the dataset data to BigQuery with a one-to-one mapping of files and tables.
+
+5. Run `make transform` to run dbt models.
+
+### Dashboard
+
+Using Google Data Studio, a dashboard showing node types and number of comments and blogs in a timeline.
+
+You can access the dashboard [here](https://lookerstudio.google.com/reporting/cf8ec056-fe91-4ac8-a35f-450ba7c089fd).
+
+![dashboard](dashboard.png)
 
 ## Glossary
 
@@ -114,3 +128,7 @@ Comment
 - [Prefect 2 with Docker Compose](https://github.com/rpeden/prefect-docker-compose)
 - [SQL queries in Pandas](https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html#io-sql)
 
+**dbt**
+
+- [dbt Core Quickstart](https://docs.getdbt.com/docs/quickstarts/dbt-core/quickstart)
+- [Configure your profile](https://docs.getdbt.com/docs/configure-your-profile)
