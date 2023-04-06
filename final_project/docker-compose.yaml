@@ -1,0 +1,46 @@
+services:
+  server:
+    image: prefecthq/prefect:2.9-python3.9
+    restart: always
+    volumes:
+      - prefect:/root/.prefect
+    entrypoint: ["prefect", "server", "start"]
+    environment:
+      - PREFECT_SERVER_API_HOST=0.0.0.0
+    ports:
+      - "4200:4200"
+    networks:
+      - default
+
+  cli:
+    build:
+      context: docker
+      dockerfile: cli.Dockerfile
+    working_dir: "/root"
+    volumes:
+      - "./flows:/root/flows"
+      - "./blocks:/root/blocks"
+      - "./data:/root/data"
+      - "~/.secrets:/root/.secrets"
+    environment:
+      - PREFECT_API_URL=http://server:4200/api
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+    networks:
+      - default
+
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-bigquery:1.4.1
+    volumes:
+      - "./dbt:/usr/app"
+      - "./profiles.yml:/root/.dbt/profiles.yml"
+      - "~/.secrets:/root/.secrets"
+    environment:
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID}
+    networks:
+      - default
+
+volumes:
+  prefect:
+
+networks:
+  default:
